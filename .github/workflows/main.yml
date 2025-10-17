@@ -6,7 +6,7 @@ on:
 env:
   BACKUP_PATH: /home/ankit/github-action-testing/backup
   SITE_PATH:  /home/ankit/github-action-testing/sites/test1
-  AZUREDEPLOY_PATH:  /home/ankit/github-action-testing/azuredeploy/test1
+  AZUREDEPLOY_PATH:  /home/ankit/github-action-testing/azuredeploy/
 
 jobs:
   build_and_deploy:
@@ -75,7 +75,7 @@ jobs:
       - name: Git Pull AzureDeploy
         run: |
           cd $AZUREDEPLOY_PATH
-          git pull origin main
+          git clone
           cd ..
           TIMESTAMP=site_name_$(date +"%Y%m%d_%H%M%S")
           mkdir -p $BACKUP_PATH/change/$TIMESTAMP
