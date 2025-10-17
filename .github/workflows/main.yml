@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
 
 env:
-  BACKUP_PATH: /home/github-action-testing/backup
-  SITE_PATH:  /home/github-action-testing/sites
-  AZUREDEPLOY_PATH:  /home/github-action-testing/azuredeploy
+  BACKUP_PATH: /home/ankit/github-action-testing/backup
+  SITE_PATH:  /home/ankit/github-action-testing/sites
+  AZUREDEPLOY_PATH:  /home/ankit/github-action-testing/azuredeploy
 
 jobs:
   build_and_deploy:
@@ -78,14 +78,14 @@ jobs:
           git pull origin main
           cd ..
           TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
-          sudo mkdir -p $BACKUP_PATH/change/$TIMESTAMP
-          sudo cp -r $AZUREDEPLOY_PATH/* $BACKUP_PATH/change/$TIMESTAMP/
+          mkdir -p $BACKUP_PATH/change/$TIMESTAMP
+          cp -r $AZUREDEPLOY_PATH/* $BACKUP_PATH/change/$TIMESTAMP/
 
       # Step 8️⃣ Replace latest file into sites folder
       - name: Copy Latest Files to Sites
         run: |
           LATEST_FOLDER=$(ls -td $BACKUP_PATH/change/* | head -1)
-          sudo cp -r $LATEST_FOLDER/* $SITE_PATH/
+          cp -r $LATEST_FOLDER/* $SITE_PATH/
 
       # # Step 9️⃣ Remove IP from Azure NSG
       # - name: Remove Runner IP from NSG
