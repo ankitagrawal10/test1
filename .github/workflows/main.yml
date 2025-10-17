@@ -68,8 +68,8 @@ jobs:
       - name: Backup Sites folder
         run: |
           TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
-          sudo mkdir -p $BACKUP_PATH/main/$TIMESTAMP
-          sudo cp -r $SITE_PATH/* $BACKUP_PATH/main/$TIMESTAMP/ || echo "No sites to backup"
+          mkdir -p $BACKUP_PATH/main/$TIMESTAMP
+          cp -r $SITE_PATH/* $BACKUP_PATH/main/$TIMESTAMP/ || echo "No sites to backup"
 
       # Step 7️⃣ Git pull and backup change folder
       - name: Git Pull AzureDeploy
