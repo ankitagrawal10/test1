@@ -68,8 +68,8 @@ jobs:
       - name: Backup Sites folder
         run: |
           TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
-          mkdir -p $BACKUP_PATH/main/$TIMESTAMP
-          cp -r $SITE_PATH/* $BACKUP_PATH/main/$TIMESTAMP/ || echo "No sites to backup"
+          sudo mkdir -p $BACKUP_PATH/main/$TIMESTAMP
+          sudo cp -r $SITE_PATH/* $BACKUP_PATH/main/$TIMESTAMP/ || echo "No sites to backup"
 
       # Step 7️⃣ Git pull and backup change folder
       - name: Git Pull AzureDeploy
@@ -78,14 +78,14 @@ jobs:
           git pull origin main
           cd ..
           TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
-          mkdir -p $BACKUP_PATH/change/$TIMESTAMP
-          cp -r $AZUREDEPLOY_PATH/* $BACKUP_PATH/change/$TIMESTAMP/
+          sudo mkdir -p $BACKUP_PATH/change/$TIMESTAMP
+          sudo cp -r $AZUREDEPLOY_PATH/* $BACKUP_PATH/change/$TIMESTAMP/
 
       # Step 8️⃣ Replace latest file into sites folder
       - name: Copy Latest Files to Sites
         run: |
           LATEST_FOLDER=$(ls -td $BACKUP_PATH/change/* | head -1)
-          cp -r $LATEST_FOLDER/* $SITE_PATH/
+          sudo cp -r $LATEST_FOLDER/* $SITE_PATH/
 
       # # Step 9️⃣ Remove IP from Azure NSG
       # - name: Remove Runner IP from NSG
