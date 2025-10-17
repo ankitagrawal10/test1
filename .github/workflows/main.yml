@@ -6,7 +6,7 @@ on:
 env:
   BACKUP_PATH: /home/ankit/github-action-testing/backup
   SITE_PATH:  /home/ankit/github-action-testing/sites/test1
-  AZUREDEPLOY_PATH:  /home/ankit/github-action-testing/azuredeploy
+  AZUREDEPLOY_PATH:  /home/ankit/github-action-testing/azuredeploy/test1
 
 jobs:
   build_and_deploy:
