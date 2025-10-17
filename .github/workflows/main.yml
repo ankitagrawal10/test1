@@ -5,7 +5,7 @@ on:
 
 env:
   BACKUP_PATH: /home/ankit/github-action-testing/backup
-  SITE_PATH:  /home/ankit/github-action-testing/sites
+  SITE_PATH:  /home/ankit/github-action-testing/sites/test1
   AZUREDEPLOY_PATH:  /home/ankit/github-action-testing/azuredeploy
 
 jobs:
@@ -67,7 +67,7 @@ jobs:
       # Step 6️⃣ Backup Sites folder
       - name: Backup Sites folder
         run: |
-          TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
+          TIMESTAMP=site_name_$(date +"%Y%m%d_%H%M%S")
           mkdir -p $BACKUP_PATH/main/$TIMESTAMP
           cp -r $SITE_PATH/* $BACKUP_PATH/main/$TIMESTAMP/ || echo "No sites to backup"
 
@@ -77,7 +77,7 @@ jobs:
           cd $AZUREDEPLOY_PATH
           git pull origin main
           cd ..
-          TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
+          TIMESTAMP=site_name_$(date +"%Y%m%d_%H%M%S")
           mkdir -p $BACKUP_PATH/change/$TIMESTAMP
           cp -r $AZUREDEPLOY_PATH/* $BACKUP_PATH/change/$TIMESTAMP/
 
